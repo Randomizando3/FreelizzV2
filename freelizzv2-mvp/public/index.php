@@ -7,16 +7,19 @@ use App\Router;
 
 $r = new Router();
 
-$r->get('/',        'App\\Controllers\\PublicController@home');
-$r->get('/jobs',    'App\\Controllers\\PublicController@jobs');
+/** Público */
+$r->get('/',         'App\\Controllers\\PublicController@home');
+$r->get('/jobs',     'App\\Controllers\\PublicController@jobs');
 $r->get('/jobs/{id}','App\\Controllers\\PublicController@jobShow');
 
-$r->get('/login',   'App\\Controllers\\AuthController@loginForm');
-$r->post('/login',  'App\\Controllers\\AuthController@login');
-$r->post('/logout', 'App\\Controllers\\AuthController@logout');
+/** Auth */
+$r->get('/login',     'App\\Controllers\\AuthController@loginForm');
+$r->post('/login',    'App\\Controllers\\AuthController@login');
+$r->post('/logout',   'App\\Controllers\\AuthController@logout');
+$r->get('/register',  'App\\Controllers\\RegisterController@form');
+$r->post('/register', 'App\\Controllers\\RegisterController@submit');
 
-
-// Admin
+/** Admin (mantém o que você já tem) */
 $r->get('/admin', 'App\\Controllers\\Admin\\AdminController@dashboard');
 
 $r->get('/admin/users', 'App\\Controllers\\Admin\\UsersController@index');
@@ -48,6 +51,42 @@ $r->get('/admin/settings', 'App\\Controllers\\Admin\\SettingsController@index');
 $r->post('/admin/settings/save', 'App\\Controllers\\Admin\\SettingsController@save');
 $r->post('/admin/settings/plan/{code}', 'App\\Controllers\\Admin\\SettingsController@savePlan');
 
+/** Cliente */
+$r->get('/client', 'App\\Controllers\\Client\\DashboardController@index');
+$r->get('/client/jobs', 'App\\Controllers\\Client\\JobsController@index');
+$r->post('/client/jobs/create', 'App\\Controllers\\Client\\JobsController@create');
+$r->get('/client/jobs/{id}', 'App\\Controllers\\Client\\JobsController@show');
+$r->post('/client/jobs/{id}/accept', 'App\\Controllers\\Client\\JobsController@accept');
 
+$r->get('/client/projects', 'App\\Controllers\\Client\\ProjectsController@index');
+$r->get('/client/projects/{id}', 'App\\Controllers\\Client\\ProjectsController@show');
+$r->post('/client/projects/{id}/message', 'App\\Controllers\\Client\\ProjectsController@sendMessage');
+$r->post('/client/projects/{id}/complete', 'App\\Controllers\\Client\\ProjectsController@markCompleted');
+$r->post('/client/projects/{id}/review', 'App\\Controllers\\Client\\ProjectsController@review');
+$r->post('/client/projects/{id}/dispute', 'App\\Controllers\\Client\\ProjectsController@dispute');
+
+/** Freelancer */
+$r->get('/freelancer', 'App\\Controllers\\Freelancer\\DashboardController@index');
+
+$r->get('/freelancer/profile', 'App\\Controllers\\Freelancer\\ProfileController@form');
+$r->post('/freelancer/profile', 'App\\Controllers\\Freelancer\\ProfileController@save');
+
+$r->get('/freelancer/verification', 'App\\Controllers\\Freelancer\\VerificationController@index');
+$r->post('/freelancer/verification', 'App\\Controllers\\Freelancer\\VerificationController@submit');
+
+$r->get('/freelancer/subscription', 'App\\Controllers\\Freelancer\\SubscriptionController@index');
+$r->post('/freelancer/subscription/set', 'App\\Controllers\\Freelancer\\SubscriptionController@set');
+
+$r->get('/freelancer/jobs', 'App\\Controllers\\Freelancer\\JobsController@index');
+$r->get('/freelancer/jobs/{id}', 'App\\Controllers\\Freelancer\\JobsController@show');
+$r->post('/freelancer/jobs/{id}/propose', 'App\\Controllers\\Freelancer\\JobsController@propose');
+
+$r->get('/freelancer/proposals', 'App\\Controllers\\Freelancer\\ProposalsController@index');
+
+$r->get('/freelancer/projects', 'App\\Controllers\\Freelancer\\ProjectsController@index');
+$r->get('/freelancer/projects/{id}', 'App\\Controllers\\Freelancer\\ProjectsController@show');
+$r->post('/freelancer/projects/{id}/message', 'App\\Controllers\\Freelancer\\ProjectsController@sendMessage');
+$r->post('/freelancer/projects/{id}/review', 'App\\Controllers\\Freelancer\\ProjectsController@review');
+$r->post('/freelancer/projects/{id}/dispute', 'App\\Controllers\\Freelancer\\ProjectsController@dispute');
 
 $r->dispatch();

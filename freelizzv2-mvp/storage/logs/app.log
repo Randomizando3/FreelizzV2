@@ -1,1 +1,14 @@
 [2025-12-18T04:00:12+00:00] EXCEPTION Class "App\\Controllers\\PublicController" not found in /var/www/html/src/Router.php:41
+[2025-12-18T05:23:01+00:00] EXCEPTION SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'IF NOT EXISTS budget_min_cents INT NOT NULL DEFAULT 0,
+  ADD COLUMN IF NOT EXIS' at line 2 in /var/www/html/scripts/migrate.php:27
+[2025-12-18T05:29:00+00:00] EXCEPTION There is no active transaction in /var/www/html/scripts/migrate.php:52
+[2025-12-18T05:32:15Z] EXCEPTION SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'IF NOT EXISTS proposal_sort_weight INT NOT NULL DEFAULT 1,
+  ADD COLUMN IF NOT ' at line 2 in /var/www/html/scripts/migrate.php:61
+#0 /var/www/html/scripts/migrate.php(61): PDO->exec('ALTER TABLE pla...')
+#1 {main}
+
+[2025-12-18T05:32:42Z] EXCEPTION SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'IF NOT EXISTS proposal_sort_weight INT NOT NULL DEFAULT 1,
+  ADD COLUMN IF NOT ' at line 2 in /var/www/html/scripts/migrate.php:61
+#0 /var/www/html/scripts/migrate.php(61): PDO->exec('ALTER TABLE pla...')
+#1 {main}
+

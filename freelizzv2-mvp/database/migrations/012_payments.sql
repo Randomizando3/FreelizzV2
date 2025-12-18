@@ -1,0 +1,22 @@
+CREATE TABLE IF NOT EXISTS payments (
+  id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  kind ENUM('escrow','verification','subscription') NOT NULL,
+  user_id BIGINT UNSIGNED NOT NULL,
+  project_id BIGINT UNSIGNED NULL,
+  verification_id BIGINT UNSIGNED NULL,
+  subscription_id BIGINT UNSIGNED NULL,
+  provider VARCHAR(40) NOT NULL DEFAULT 'mercadopago',
+  status ENUM('created','pending','approved','failed','canceled','refunded') NOT NULL DEFAULT 'created',
+  amount_cents INT NOT NULL DEFAULT 0,
+  currency CHAR(3) NOT NULL DEFAULT 'BRL',
+  provider_preference_id VARCHAR(120) NULL,
+  provider_payment_id VARCHAR(120) NULL,
+  init_point TEXT NULL,
+  raw_json MEDIUMTEXT NULL,
+  created_at DATETIME NOT NULL,
+  updated_at DATETIME NULL,
+  CONSTRAINT fk_pay_user FOREIGN KEY (user_id) REFERENCES users(id),
+  KEY ix_pay_kind_status (kind, status),
+  KEY ix_pay_user (user_id, created_at),
+  KEY ix_pay_project (project_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

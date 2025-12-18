@@ -1,0 +1,3 @@
+ALTER TABLE plans
+  ADD COLUMN proposal_sort_weight INT NOT NULL DEFAULT 1,
+  ADD COLUMN price_cents INT NOT NULL DEFAULT 0;

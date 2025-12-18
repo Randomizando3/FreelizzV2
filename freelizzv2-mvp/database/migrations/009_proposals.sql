@@ -1,0 +1,20 @@
+CREATE TABLE IF NOT EXISTS proposals (
+  id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  job_id BIGINT UNSIGNED NOT NULL,
+  freelancer_id BIGINT UNSIGNED NOT NULL,
+  cover_letter_html MEDIUMTEXT NOT NULL,
+  price_cents INT NOT NULL DEFAULT 0,
+  currency CHAR(3) NOT NULL DEFAULT 'BRL',
+  eta_days INT NOT NULL DEFAULT 0,
+  status ENUM('sent','withdrawn','rejected','accepted') NOT NULL DEFAULT 'sent',
+  plan_code_snapshot VARCHAR(16) NOT NULL DEFAULT 'free',
+  plan_weight_snapshot INT NOT NULL DEFAULT 1,
+  created_at DATETIME NOT NULL,
+  updated_at DATETIME NULL,
+  CONSTRAINT fk_prop_job FOREIGN KEY (job_id) REFERENCES jobs(id),
+  CONSTRAINT fk_prop_freela FOREIGN KEY (freelancer_id) REFERENCES users(id),
+  UNIQUE KEY uq_prop_job_freela (job_id, freelancer_id),
+  KEY ix_prop_job (job_id),
+  KEY ix_prop_freela_created (freelancer_id, created_at),
+  KEY ix_prop_job_weight (job_id, plan_weight_snapshot, created_at)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

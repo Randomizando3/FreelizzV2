@@ -1,0 +1,109 @@
+# =========================================================
+# Visual Studio / .NET - geral (cache, build, user files)
+# =========================================================
+
+# Build results
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Dd]ebug*/
+[Rr]elease*/
+x64/
+x86/
+[Aa]ny[Cc]pu/
+[Aa]rm/
+[Aa]rm64/
+[bB]uild/
+[Oo]ut/
+
+# Visual Studio cache / user-specific
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.rsuser
+*.VC.db
+*.VC.VC.opendb
+*.opendb
+*.aps
+*.ncb
+*.sdf
+*.cache
+*.pdb
+*.ipch
+*.ilk
+
+# MSBuild / NuGet / Paket
+*.nuget.props
+*.nuget.targets
+*.nupkg
+*.snupkg
+**/packages/*
+!**/packages/build/
+!**/packages/repositories.config
+paket-files/
+
+# Dotnet tools & local config
+.dotnet/
+.localhistory/
+*.userprefs
+
+# Test results
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+*.trx
+*.coverage
+*.coveragexml
+
+# ReSharper / Rider / others
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+.idea/
+
+# VS Code (opcional; se você usa VS Code junto)
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+ehthumbs.db
+*.swp
+*.swo
+*~
+
+# ASP.NET / IIS Express
+.vs/config/
+iisexpress/
+
+# Publish / artifacts
+*.publishproj
+*.pubxml
+*.pubxml.user
+**/Properties/PublishProfiles/
+**/Properties/ServiceDependencies/
+**/Properties/ServiceDependencies.local.json
+
+# Azure / tooling artifacts
+.azure/
+ServiceFabricBackup/
+*.sfproj.user
+
+# Node (se tiver frontend junto)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+dist/
+build/
+
+# Secrets (ajuste conforme seu uso)
+secrets.json
+appsettings.*.json
+!.gitignore
